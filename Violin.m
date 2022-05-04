@@ -147,7 +147,7 @@ classdef Violin < handle
             
             if isempty(args.ViolinColor)
                 C = colororder;
-                args.ViolinColor = {repmat(C,ceil(size(data,2)/length(C)),1)};
+                args.ViolinColor = {repmat(C,ceil(max(size(data,2),pos)/length(C)),1)};
             end
             
             data = data(not(isnan(data)));
