@@ -121,7 +121,7 @@ if isa(data, 'dataset') || isstruct(data) || istable(data)
                 catnames = [catnames colnames{n}]; %#ok<*AGROW>
             end
         end
-        catnames = sort(catnames);
+%         catnames = sort(catnames);
     else
         for n=1:length(grouporder)
             if isnumeric(data.(grouporder{n}))
@@ -132,9 +132,9 @@ if isa(data, 'dataset') || isstruct(data) || istable(data)
     
     for n=1:length(catnames)
         thisData = data.(catnames{n});
-        violins(n) = Violin(thisData, n, varargin{:});
+        violins(n) = Violin({thisData}, n, varargin{:});
     end
-    set(gca, 'XTick', 1:length(catnames), 'XTickLabels', catnames);
+    set(gca, 'XTick', 1:length(catnames), 'XTickLabels', catnames, 'TickLabelInterpreter', 'none');
     set(gca,'Box','on');
     return
 elseif iscell(data) && length(data(:))==2 % cell input
